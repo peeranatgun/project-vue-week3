@@ -1,9 +1,12 @@
 <template>
   <div class="container mt-4">
     <!-- หัวข้อหน้า -->
-    <h2 class="text-bg-danger p-3">รายชื่อลูกค้า</h2>
+    <h2 class="text-bg-dark p-3">รายชื่อลูกค้า</h2>
     
     <!-- ตารางแสดงข้อมูลลูกค้า -->
+     <div class="text-end mb-3"><a href="/add_customer" class="btn btn-success">
+      Add+</a>
+    </div>
     <table class="table table-bordered table-striped">
       <thead class="table-dark">
         <tr>
@@ -61,7 +64,7 @@ export default {
     const fetchdata = async () => {
       try {
         // เรียก API (PHP)
-        const response = await fetch("http://localhost/week3_68710279/php_api/show_customer.php");
+        const response = await fetch("http://localhost/project-vue-week3/php_api/show_customer.php");
 
         // ตรวจสอบว่าการเรียกสำเร็จหรือไม่
         if (!response.ok) {
