@@ -4,21 +4,23 @@
     <Navbar />
 
     <!-- Main Content -->
-    <main class="flex-grow-1">
+    
       <router-view />
-    </main>
+    
 
     <!-- Footer -->
     <Footer />
+
   </div>
 </template>
 
 <script>
 import Navbar from "./components/navbar.vue";
+import Footer from "./components/footer.vue";
 
 export default {
   name: "App",
-  components: { Navbar }
+  components: { Navbar , Footer}
 };
 </script>
 
