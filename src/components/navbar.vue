@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <router-link class="navbar-brand fw-bold" to="/">Shabu House</router-link>
+      <router-link class="navbar-brand fw-bold" to="/">21HIKING SHOP</router-link>
       <button
         class="navbar-toggler"
         type="button"

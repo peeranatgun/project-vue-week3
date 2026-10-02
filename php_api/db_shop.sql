@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2026 at 06:07 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Oct 02, 2026 at 06:54 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_shop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `contact_id` int(11) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `detail` text NOT NULL,
+  `fullname` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`contact_id`, `subject`, `detail`, `fullname`, `email`, `created_at`) VALUES
+(1, 'test contact 1', 'hello world', 'peeranat sawatdichai', 'gun@gg.com', '2026-10-02 03:57:27');
 
 -- --------------------------------------------------------
 
@@ -42,7 +64,7 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`customer_id`, `firstName`, `lastName`, `phone`, `username`, `password`) VALUES
 (00000001, 'มานะ', 'เด็กดี', '038756921', 'mana', '1234'),
-(00000002, 'มานี', 'ใจดี', '038756901', 'manee', '1234');
+(00000003, 'gun', 'sawatdichai', '000-000-0000', 'ggg', '$2y$10$BvK85ezY20LilSAH8UwGSeR./f9SFujGVs29fbFBMPWlFM7ifxYtS');
 
 -- --------------------------------------------------------
 
@@ -64,8 +86,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `firstName`, `lastName`, `phone`, `username`, `password`) VALUES
-(000001, 'มีนา', 'มีเงิน', '038756000', 'mena', '1234'),
-(000002, 'ใจดี', 'เจได', '038756001', 'jaidee', '1234');
+(000001, 'มีนา', 'มีเงิน', '038756000', 'mena', '1234');
 
 -- --------------------------------------------------------
 
@@ -88,13 +109,19 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `description`, `price`, `image`, `stock`, `created_at`) VALUES
-(1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', '199.00', 'tshirt.jpg', 50, '2026-09-04 03:47:42'),
-(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', 'jeans.jpg', 30, '2026-09-04 03:47:42'),
-(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', 'sneakers.jpg', 20, '2026-09-04 03:47:42');
+(1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', 199.00, 'tshirt.jpg', 50, '2026-09-04 03:47:42'),
+(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', 799.00, 'jeans.jpg', 30, '2026-09-04 03:47:42'),
+(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', 1299.00, 'sneakers.jpg', 20, '2026-09-04 03:47:42');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`contact_id`);
 
 --
 -- Indexes for table `customers`
@@ -119,16 +146,22 @@ ALTER TABLE `products`
 --
 
 --
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(6) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `emp_id` int(6) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`

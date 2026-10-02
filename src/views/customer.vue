@@ -2,32 +2,53 @@
   <div class="container mt-4">
     <!-- หัวข้อหน้า -->
     <h2 class="text-bg-dark p-3">รายชื่อลูกค้า</h2>
-    
+
     <!-- ตารางแสดงข้อมูลลูกค้า -->
-     <div class="text-end mb-3"><a href="/add_customer" class="btn btn-success">
-      Add+</a>
+    <div class="text-end mb-3">
+      <a href="/add_customer" class="btn btn-success"> Add+</a>
     </div>
     <table class="table table-bordered table-striped">
       <thead class="table-dark">
         <tr>
-          <th>ลำดับที่</th>        <!-- index -->
-          <th>รหัสลูกค้า</th>     <!-- customer_id -->
-          <th>ชื่อ</th>            <!-- firstName -->
-          <th>นามสกุล</th>        <!-- lastName -->
-          <th>เบอร์โทร</th>       <!-- phone -->
-          <th>ชื่อผู้ใช้</th>      <!-- username -->
+          <th>ลำดับที่</th>
+          <!-- index -->
+          <th>รหัสลูกค้า</th>
+          <!-- customer_id -->
+          <th>ชื่อ</th>
+          <!-- firstName -->
+          <th>นามสกุล</th>
+          <!-- lastName -->
+          <th>เบอร์โทร</th>
+          <!-- phone -->
+          <th>ชื่อผู้ใช้</th>
+          <!-- username -->
+          <th>ลบ</th>
         </tr>
       </thead>
 
       <tbody>
         <!-- วนลูปข้อมูล customers -->
-        <tr v-for="(item,index) in customers" :key="item.customer_id">
-          <td>{{ index + 1 }}</td>       <!-- แสดงลำดับที่ (เริ่มจาก 1) -->
-          <td>{{ item.customer_id }}</td> <!-- รหัสลูกค้า -->
-          <td>{{ item.firstName }}</td>   <!-- ชื่อ -->
-          <td>{{ item.lastName }}</td>    <!-- นามสกุล -->
-          <td>{{ item.phone }}</td>       <!-- เบอร์โทร -->
-          <td>{{ item.username }}</td>    <!-- ชื่อผู้ใช้ -->
+        <tr v-for="(item, index) in customers" :key="item.customer_id">
+          <td>{{ index + 1 }}</td>
+          <!-- แสดงลำดับที่ (เริ่มจาก 1) -->
+          <td>{{ item.customer_id }}</td>
+          <!-- รหัสลูกค้า -->
+          <td>{{ item.firstName }}</td>
+          <!-- ชื่อ -->
+          <td>{{ item.lastName }}</td>
+          <!-- นามสกุล -->
+          <td>{{ item.phone }}</td>
+          <!-- เบอร์โทร -->
+          <td>{{ item.username }}</td>
+          <!-- ชื่อผู้ใช้ -->
+          <td>
+            <button
+              class="btn btn-danger btn-sm"
+              @click="deleteCustomer(item.customer_id)"
+            >
+              ลบ
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -56,7 +77,7 @@ export default {
     // -----------------------------
     const customers = ref([]); // เก็บข้อมูลลูกค้า (array)
     const loading = ref(true); // สถานะโหลดข้อมูล
-    const error = ref(null);   // เก็บ error
+    const error = ref(null); // เก็บ error
 
     // -----------------------------
     // ฟังก์ชันดึงข้อมูลจาก API
@@ -64,7 +85,9 @@ export default {
     const fetchdata = async () => {
       try {
         // เรียก API (PHP)
-        const response = await fetch("http://localhost/project-vue-week3/php_api/show_customer.php");
+        const response = await fetch(
+          "http://localhost/project-vue-week3/php_api/show_customer.php",
+        );
 
         // ตรวจสอบว่าการเรียกสำเร็จหรือไม่
         if (!response.ok) {
@@ -73,11 +96,9 @@ export default {
 
         // แปลง response เป็น JSON
         customers.value = await response.json();
-
       } catch (err) {
         // ถ้า error ให้เก็บข้อความไว้แสดง
         error.value = err.message;
-
       } finally {
         // ไม่ว่าจะสำเร็จหรือ error ให้หยุด loading
         loading.value = false;
@@ -91,17 +112,46 @@ export default {
       fetchdata(); // เรียก API ทันที
     });
 
+    //ฟังก์ชั่นการลบข้อมูล ***
+    const deleteCustomer = async (id) => {
+      if (!confirm("คุณต้องการลบข้อมูลนี้ใช่หรือไม่?")) return;
+
+      try {
+        const response = await fetch(
+          "http://localhost/project-vue-week3/php_api/api_customer.php",
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ customer_id: id }),
+          },
+        );
+
+        const result = await response.json();
+
+        if (result.success) {
+          // ลบออกจาก customers ทันที (ไม่ต้องโหลดใหม่)
+          customers.value = customers.value.filter((c) => c.customer_id !== id);
+          alert(result.message);
+        } else {
+          alert(result.message);
+        }
+      } catch (err) {
+        alert("เกิดข้อผิดพลาด: " + err.message);
+      }
+    };
+
     // -----------------------------
     // return ค่าไปใช้ใน template
     // -----------------------------
     return {
       customers,
+      deleteCustomer,
       loading,
-      error
+      error,
     };
-  }
+  },
 };
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>
