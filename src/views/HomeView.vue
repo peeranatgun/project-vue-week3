@@ -113,9 +113,12 @@
       </div>
     </div>
 
-    <h1 class="display-5 fw-bold text-body-emphasis">No Plan Outfit</h1>
+    <h1 class="display-5 fw-bold text-body-emphasis">21Hiking Outfit</h1>
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">The plan is no plan</p>
+      <p class="lead mb-4">
+        The plan is no plan <br />
+        Outdoor & Hiking Wear for Adventurers
+      </p>
 
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
@@ -127,6 +130,101 @@
       </div>
     </div>
   </div>
+  <!-- ========================= AUTO SLIDING BANNER ========================= -->
+  <div class="container-fluid px-0">
+    <div
+      id="hikingBanner"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+      data-bs-interval="3500"
+    >
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#hikingBanner"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#hikingBanner"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#hikingBanner"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <!-- Carousel Items -->
+      <div class="carousel-inner">
+        <!-- Banner 1 -->
+        <div class="carousel-item active">
+          <img
+            src="../assets/banner/banner arc.jpg"
+            class="d-block w-100"
+            alt="Hiking Adventure"
+            style="height: 600px; object-fit: cover; filter: brightness(60%)"
+          />
+          
+        </div>
+        <!-- Banner 2 -->
+        <div class="carousel-item">
+          <img
+            src="../assets/banner/banner Tnf.jpg"
+            class="d-block w-100"
+            alt="Mountain Adventure"
+            style="height: 600px; object-fit: cover; filter: brightness(60%)"
+          />
+          <div
+            class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100"
+          >
+           
+          </div>
+        </div>
+        <!-- Banner 3 -->
+        <div class="carousel-item">
+          <img
+            src="../assets/banner/arc.jpg"
+            class="d-block w-100"
+            alt="Outdoor Camping"
+            style="height: 600px; object-fit: cover; filter: brightness(60%)"
+          />
+          <div
+            class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100"
+          >
+           
+          </div>
+        </div>
+      </div>
+      <!-- Previous Button -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#hikingBanner"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden"> Previous </span>
+      </button>
+      <!-- Next Button -->
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#hikingBanner"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden"> Next </span>
+      </button>
+    </div>
+  </div>
+  <!-- ========================= END AUTO SLIDING BANNER ========================= -->
   <div class="container px-4 py-5" id="hanging-icons">
     <h2 class="pb-2 border-bottom">Hanging icons</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
